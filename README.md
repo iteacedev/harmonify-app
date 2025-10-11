@@ -12,10 +12,19 @@ A simple PHP project that integrates **Spotify** and **Slack** APIs to update yo
 - Composer  
 - Internet connection for API access  
 
-## Instalation
+## Installation
 
 1. Clone the repository
 
 ```bash
 git clone https://github.com/iteacedev/harmonify-app.git
 
+2. Go to the project folder
+
+```bash
+cd harmonify-app/
+
+3. Install dependencies
+
+```bash
+composer install
