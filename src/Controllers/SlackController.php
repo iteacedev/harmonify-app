@@ -21,13 +21,28 @@ class SlackController
 
     public function handle(array $spotifyData): void
     {
-        $status = $this->formatter->format($spotifyData);
+        if ($spotifyData['status_code'] === 204) {
+            $this->clearStatus();
+            return;
+        }
 
+        $status = $this->formatter->format($spotifyData);
         $lastStatus = $this->lastStatus->get() ?? '';
 
-        if ($lastStatus != $status) {
-            $this->slackService->setStatus($status);
-            $this->lastStatus->save(['status' => $status]);
+        if ($lastStatus !== $status) {
+            $this->updateStatus($status);
         }
+    }
+
+    private function clearStatus(): void
+    {
+        $this->slackService->setStatus('', '');
+        $this->lastStatus->save(['status' => '']);
+    }
+
+    private function updateStatus(string $status, ?string $emoji = null): void
+    {
+        $this->slackService->setStatus($status);
+        $this->lastStatus->save(['status' => $status]);
     }
 }

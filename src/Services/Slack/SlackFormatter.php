@@ -8,11 +8,11 @@ class SlackFormatter
 
     public function format(array $spotifyData): string
     {
-        $track = $spotifyData['name'];
+        $track = $spotifyData['item']['name'];
 
         $artists = array_map(function ($artist) {
             return $artist['name'];
-        }, $spotifyData['artists']);
+        }, $spotifyData['item']['artists']);
 
         $status = "Listening to {$track} – " . implode(', ', $artists);
         $status = $this->sanitize($status);
