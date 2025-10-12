@@ -12,6 +12,7 @@ class ApiClient
 
     public function __construct(?array $config = [])
     {
+        $config['connect_timeout'] = 20;
         $this->client = new Client($config);
         $this->logger = new Logger();
     }
