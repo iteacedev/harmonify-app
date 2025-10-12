@@ -8,6 +8,10 @@ class SlackFormatter
 
     public function format(array $spotifyData): string
     {
+        if ($spotifyData['currently_playing_type'] === 'episode') {
+            return "Ouvindo um podcast. O Spotify não informa qual. Isso é triste. :(";
+        }
+
         $track = $spotifyData['item']['name'];
 
         $artists = array_map(function ($artist) {
