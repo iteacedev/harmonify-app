@@ -7,7 +7,8 @@ use App\Controllers\SlackController;
 use App\Helpers\Logger;
 use App\Config\AppConfig;
 
-AppConfig::init();
+$config = new AppConfig();
+$config->init();
 
 try {
     $spotifyController = new SpotifyController();
