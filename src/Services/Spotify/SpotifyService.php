@@ -77,7 +77,7 @@ class SpotifyService
             ]
         );
 
-        return $data['item'] ?? [];
+        return $data;
     }
 
     private function refreshToken(string $refreshToken): array

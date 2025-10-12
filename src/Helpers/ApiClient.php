@@ -16,14 +16,17 @@ class ApiClient
         $this->logger = new Logger();
     }
 
-    public function request($method, $endpoint, ?array $options = null): ?array
+    public function request($method, $endpoint, ?array $options = null): array
     {
         try {
             $response = $this->client->request($method, $endpoint, $options);
-            return json_decode($response->getBody(), true);
+            $responseData = json_decode($response->getBody(), true);
+            $responseData['status_code'] = $response->getStatusCode();
+
+            return $responseData;
         } catch (GuzzleException $e) {
             $this->logger->save("[ApiClient] {$method} {$endpoint} failed: {$e->getMessage()}");
-            return null;
+            return [];
         }
     }
 }
