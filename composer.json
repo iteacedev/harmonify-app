@@ -1,5 +1,5 @@
 {
-    "name": "iteacedev/spotify-slack-status",
+    "name": "iteacedev/harmonify-app",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
