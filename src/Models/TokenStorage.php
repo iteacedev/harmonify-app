@@ -8,7 +8,7 @@ class TokenStorage
 
     public function __construct()
     {
-        $this->file = __DIR__ . '/../../storage/tokens.json';
+        $this->file = BASE_DIR . '/storage/tokens.json';
     }
 
     public function save(array $data)

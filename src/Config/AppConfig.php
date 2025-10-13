@@ -6,11 +6,9 @@ use Dotenv\Dotenv;
 
 class AppConfig
 {
-    private string $basePath;
-
     public function __construct()
     {
-        $this->basePath = dirname(__DIR__, 2);
+        define('BASE_DIR', dirname(__DIR__, 2));
     }
 
     public function init(): void
@@ -22,7 +20,7 @@ class AppConfig
 
     private function createStorageDirectory(): void
     {
-        $storagePath = $this->basePath . '/storage';
+        $storagePath = BASE_DIR . '/storage';
 
         if (!is_dir($storagePath)) {
             mkdir($storagePath);
@@ -37,10 +35,10 @@ class AppConfig
 
     private function loadEnv(): void
     {
-        $envFilePath = $this->basePath . '/.env';
+        $envFilePath = BASE_DIR . '/.env';
 
         if (file_exists($envFilePath)) {
-            $dotenv = Dotenv::createImmutable($this->basePath);
+            $dotenv = Dotenv::createImmutable(BASE_DIR);
             $dotenv->load();
         }
     }

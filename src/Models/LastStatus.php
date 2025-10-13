@@ -8,7 +8,7 @@ class LastStatus
 
     public function __construct()
     {
-        $this->file = __DIR__ . '/../../storage/last_status.json';
+        $this->file = BASE_DIR . '/storage/last_status.json';
     }
 
     public function save(array $data)

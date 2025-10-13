@@ -8,7 +8,7 @@ class Logger
 
     public function __construct()
     {
-        $this->logFile = __DIR__ . '/../../storage/app.log';
+        $this->logFile = BASE_DIR . '/storage/app.log';
     }
 
     public function save(string $message): void
