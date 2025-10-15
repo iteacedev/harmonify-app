@@ -3,6 +3,7 @@
 namespace App\Services\Spotify;
 
 use App\Helpers\ApiClient;
+use App\Helpers\Env;
 use App\Models\TokenStorage;
 
 class SpotifyService
@@ -15,9 +16,9 @@ class SpotifyService
 
     public function __construct()
     {
-        $this->clientId = $_ENV['SPOTIFY_CLIENT_ID'];
-        $this->clientSecret = $_ENV['SPOTIFY_CLIENT_SECRET'];
-        $this->redirectUri = $_ENV['REDIRECT_URI'];
+        $this->clientId = Env::get('SPOTIFY_CLIENT_ID');
+        $this->clientSecret = Env::get('SPOTIFY_CLIENT_SECRET');
+        $this->redirectUri = Env::get('REDIRECT_URI');
 
         $this->http = new ApiClient();
         $this->storage = new TokenStorage();

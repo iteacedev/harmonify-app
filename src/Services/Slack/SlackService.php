@@ -3,6 +3,7 @@
 namespace App\Services\Slack;
 
 use App\Helpers\ApiClient;
+use App\Helpers\Env;
 
 class SlackService
 {
@@ -10,7 +11,7 @@ class SlackService
 
     public function __construct()
     {
-        $token = $_ENV['SLACK_TOKEN_IPEWEB'];
+        $token = Env::get('SLACK_TOKEN_IPEWEB');
         $this->http = new ApiClient([
             'base_uri' => 'https://slack.com/api/',
             'headers' => [
@@ -20,12 +21,13 @@ class SlackService
         ]);
     }
 
-    public function setStatus(string $status, string $emoji = ":gatinho_musica:"): void
+    public function setStatus(string $status, string $emoji = ":headphones:"): void
     {
         $payload = [
             'json' => [
                 'profile' => [
-                    'status_text' => $status,
+                    'display_name' => $status,
+                    'status_text' => '',
                     'status_emoji' => $emoji
                 ]
             ],

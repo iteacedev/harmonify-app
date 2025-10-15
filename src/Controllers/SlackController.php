@@ -36,7 +36,7 @@ class SlackController
 
     private function clearStatus(): void
     {
-        $this->slackService->setStatus('', '');
+        $this->slackService->setStatus('Tamires', '');
         $this->lastStatus->save(['status' => '']);
     }
 

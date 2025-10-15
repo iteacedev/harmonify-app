@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-class LastStatus
+class LastToot
 {
     private string $file;
 
     public function __construct()
     {
-        $this->file = BASE_DIR . '/last_status.json';
+        $this->file = BASE_DIR . '/last_toot.json';
     }
 
     public function save(array $data)

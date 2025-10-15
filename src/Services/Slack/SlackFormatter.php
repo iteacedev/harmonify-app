@@ -4,12 +4,16 @@ namespace App\Services\Slack;
 
 class SlackFormatter
 {
-    private int $maxLength = 100;
+    private int $maxLength = 80;
 
     public function format(array $spotifyData): string
     {
         if ($spotifyData['currently_playing_type'] === 'episode') {
-            return "Ouvindo um podcast. O Spotify não informa qual. Isso é triste. :(";
+            return "Tamires está ouvando um podcast. O Spotify não informa qual. Isso é triste.";
+        }
+
+        if (!$spotifyData['is_playing']) {
+            return 'Tamires';
         }
 
         $track = $spotifyData['item']['name'];
@@ -18,7 +22,7 @@ class SlackFormatter
             return $artist['name'];
         }, $spotifyData['item']['artists']);
 
-        $status = "Listening to {$track} – " . implode(', ', $artists);
+        $status = "Tamires tá ouçano {$track} - " . implode(', ', $artists);
         $status = $this->sanitize($status);
 
         if (mb_strlen($status) > $this->maxLength) {
@@ -30,7 +34,7 @@ class SlackFormatter
 
     private function sanitize(string $text): string
     {
-        $text = preg_replace('/[^\p{L}\p{N}\p{P}\p{Z}]/u', '', $text);
+        $text = preg_replace("/[^\p{L}\p{N}\s._,'\-\/]/u", '', $text);
         return $text;
     }
 }
