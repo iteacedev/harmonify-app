@@ -4,7 +4,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 use App\Controllers\SlackController;
 use App\Controllers\SpotifyController;
-use App\Controllers\MastodonController;
 use App\Helpers\Logger;
 use App\Config\AppConfig;
 
@@ -17,9 +16,7 @@ try {
 
     if ($spotifyData) {
         $slackController = new SlackController();
-        $mastodonController = new MastodonController();
         $slackController->handle($spotifyData);
-        $mastodonController->handle($spotifyData);
     }
 } catch (Throwable $e) {
     $log = new Logger();
