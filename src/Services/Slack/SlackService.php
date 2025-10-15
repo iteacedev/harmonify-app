@@ -13,7 +13,7 @@ class SlackService
     {
         $token = Env::get('SLACK_TOKEN_IPEWEB');
         $this->http = new ApiClient([
-            'base_uri' => 'https://slack.com/api/',
+            'base_uri' => Env::get('SLACK_URL'),
             'headers' => [
                 'Authorization' => "Bearer {$token}",
                 'Content-Type' => 'application/json;charset=utf-8'
